@@ -48,7 +48,7 @@ public class QuoteBook {
             _quoteMap.get(quote.getSecurityId()).setBidPrice(quote.getBidPrice());
         }
         else {
-            _quoteMap.get(quote.getSecurityId()).setBidPrice(quote.getAskPrice());
+            _quoteMap.get(quote.getSecurityId()).setAskPrice(quote.getAskPrice());
         }
         _lock.unlock();
     }

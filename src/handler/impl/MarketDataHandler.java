@@ -49,7 +49,7 @@ public class MarketDataHandler extends ConnectionHandler {
     public synchronized boolean subscribe(ContractType type, String symbol) throws Exception {
         if (this.isConnected()) {
             // Switch to live (1) frozen (2) delayed (3) or delayed frozen (4)
-            _client.reqMarketDataType(3);
+            _client.reqMarketDataType(1);
             Contract ibContract = ContractFactory.getContract(type, symbol).getContract();
             logger.info("Contract Details:\n" + ibContract);
 
@@ -99,12 +99,12 @@ public class MarketDataHandler extends ConnectionHandler {
                         " receiving negative tick price " + price + " ignoring.");
                 return;
             }
-            if (TickType.DELAYED_BID.index() == field) {
+            if (TickType.BID.index() == field) {
                 logger.info("[IB MD] Ticker " + symbol + " BID price: " + price);
                 Quote quote = Quote.builder().securityId(symbol).bidPrice(price).build();
                 QuoteBook.getInstance().updateQuote(quote, QuoteSide.BID);
             }
-            else if (TickType.DELAYED_ASK.index() == field) {
+            else if (TickType.ASK.index() == field) {
                 logger.info("[IB MD] Ticker " + symbol + " ASK price: " + price);
                 Quote quote = Quote.builder().securityId(symbol).askPrice(price).build();
                 QuoteBook.getInstance().updateQuote(quote, QuoteSide.ASK);

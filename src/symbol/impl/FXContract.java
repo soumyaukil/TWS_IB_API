@@ -1,8 +1,9 @@
-package symbol;
+package symbol.impl;
 
 import com.ib.client.Contract;
 import lombok.Builder;
 import lombok.Getter;
+import symbol.BaseContract;
 
 @Builder
 @Getter

@@ -1,6 +1,6 @@
 package symbol;
 
-import com.ib.client.Contract;
+import symbol.impl.FXContract;
 
 /**
  * Created by soumukil on 12/8/17.

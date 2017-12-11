@@ -71,7 +71,8 @@ public class MainExecutor {
         Quote quote = QuoteBook.getInstance().getQuote(symbol);
 
         //sending bracket order here
-        orderHandler.placeOrder(ContractType.FX, symbol, QuoteSide.BID, 25000, 0.8937,.9 , .89);
+        orderHandler.placeOrder(ContractType.FX, symbol, QuoteSide.ASK, 25000, quote.getAskPrice(),quote.getBidPrice() , quote.getAskPrice());
+        //orderHandler.placeOrder(ContractType.FX, symbol, QuoteSide.BID, 25000, 0.8937,.9 , .89);
 
         mdThread.join();
         orderThread.join();
